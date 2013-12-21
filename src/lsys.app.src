@@ -1,0 +1,18 @@
+{application, lsys,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {modules, [
+  	     lsys,
+	     lsys_srv,
+	     lsys_app,
+	     lsys_sup
+  	    ]},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { lsys_app, []}},
+  {env, []}
+ ]}.
