@@ -5,8 +5,8 @@
 -include_lib("eunit/include/eunit.hrl").
 -endif.
 
--type config() :: dict().
--type rules() :: dict().
+-type config() :: dict:dict().
+-type rules() :: dict:dict().
 -type constant() :: char() | [].
 -type variable() :: char().
 
@@ -90,11 +90,14 @@ if_in(Member, List, ExprTrue, ExprFalse) ->
 	
 base_test() ->
     io:format("~p~n", [file:get_cwd()]),
-    {ok, Config} = read_config(["../priv"], "test1.lsys"),
+    {ok, Config} = read_config(["./priv"], "test1.lsys"),
     Axiom = "S0",
     Iters = 3,
-    ?assertEqual("1111[11[1[0]0]1[0]0]11[1[0]0]1[0]0", generate(Iters, Axiom, Config)).
+    io:format("~p~n~n", [generate(Iters, Axiom, Config)]).
 
+-endif.
+
+-ifdef (TEST).
 srv_test() ->
     application:start(lsys),
     {ok, Config} = read_config([code:priv_dir(lsys)], "test1.lsys"),
